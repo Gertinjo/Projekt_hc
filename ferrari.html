@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Scuderia Ferrari - Team Info</title>
+  <link rel="icon" href="images/ferrari.png" type="image/svg+xml" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #121212;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #b71c1c; /* Ferrari red */
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      border-bottom: 2px solid #d32f2f;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    .team-logo {
+      display: block;
+      margin: 0 auto 20px;
+      max-width: 250px;
+    }
+
+    .drivers {
+      display: flex;
+      justify-content: space-around;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .driver-card {
+      background: #1e1e1e;
+      border-radius: 10px;
+      width: 200px;
+      text-align: center;
+      padding: 15px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .driver-card:hover {
+      transform: scale(1.05);
+    }
+
+    .driver-card img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border: 3px solid #d32f2f;
+    }
+
+    .stats-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .stats-table th, .stats-table td {
+      border: 1px solid #444;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .stats-table th {
+      background: #333;
+    }
+
+    p.history {
+      line-height: 1.6;
+    }
+
+    a.back-link {
+      color: #d32f2f;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Scuderia Ferrari</h1>
+  </header>
+
+  <main>
+    <img
+      class="team-logo"
+      src="images/ferrari.png"
+      alt="Ferrari Logo"
+    />
+
+    <section>
+      <h2>Team Overview</h2>
+      <p class="history">
+        Scuderia Ferrari is the oldest and most iconic Formula 1 team, with a legacy of passion, speed, and innovation dating back to 1950. The team has won numerous constructors’ and drivers’ championships and remains a fan favorite worldwide.
+      </p>
+    </section>
+
+    <section>
+      <h2>Drivers</h2>
+      <div class="drivers">
+        <div class="driver-card" onclick="window.location.href='leclerc.html'">
+          <img
+            src="images/leclerc.avif"
+            alt="Charles Leclerc"
+          />
+          <h3>Charles Leclerc</h3>
+          <p>Young Star</p>
+        </div>
+
+        <div class="driver-card" onclick="window.location.href='lewis.html'">
+          <img
+            src="images/hamilton.avif"
+          />
+          <h3>Lewis Hamilton</h3>
+          <p>Retired Champion</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Team Stats (2024 Season)</h2>
+      <table class="stats-table">
+        <tr>
+          <th>Races Entered</th>
+          <th>Wins</th>
+          <th>Poles</th>
+          <th>Fastest Laps</th>
+          <th>Championships</th>
+        </tr>
+        <tr>
+          <td>23</td>
+          <td>5</td>
+          <td>7</td>
+          <td>4</td>
+          <td>16</td>
+        </tr>
+      </table>
+    </section>
+  </main>
+</body>
+</html>
