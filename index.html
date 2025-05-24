@@ -12,6 +12,103 @@
     <header>
     <h1>F1 Teams</h1>
   </header>
+  <main>
+<main>
+  <main>
+  <div class="flex-wrapper" style="display: flex; gap: 20px; max-width: 1200px; margin: 0 auto; padding: 20px; align-items: center;">
+  <div class="team-container" style="flex: 3; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px;">
+    <!-- Your team cards here -->
+  </div>
+  
+  <aside id="recommendations" style="flex: 1; background-color: #1e1e1e; border-radius: 12px; padding: 20px; color: #ffd700; font-family: Arial, sans-serif; box-shadow: 0 0 10px #ffd700; min-width: 250px;">
+    <h3 style="margin-top: 0; border-bottom: 2px solid #ffd700; padding-bottom: 8px;">Recommendations</h3>
+    <div id="recommendation-content">Loading recommendations...</div>
+  </aside>
+</div>
+
+
+<script>
+  // Example data for recommendations keyed by team & driver
+  const recommendationsData = {
+    "Red Bull Racing": {
+      "Max Verstappen": [
+        "Watch Max's latest race highlights.",
+        "Check out the Red Bull Racing 2025 car specs.",
+        "Upcoming race: Monaco Grand Prix - May 26, 2025"
+      ],
+      "Sergio Pérez": [
+        "Sergio's top qualifying laps.",
+        "Team strategy insights for Red Bull Racing.",
+        "Fan event coming up next month!"
+      ]
+    },
+    "Ferrari": {
+      "Charles Leclerc": [
+        "Charles Leclerc's 2025 season overview.",
+        "Ferrari team history and legacy.",
+        "Upcoming race: Italian Grand Prix - Sept 7, 2025"
+      ],
+      "Carlos Sainz": [
+        "Carlos' best overtakes.",
+        "Ferrari's latest car updates.",
+        "Exclusive interviews with Carlos Sainz."
+      ]
+    },
+    "Mercedes": {
+      "Lewis Hamilton": [
+        "Lewis Hamilton's record-breaking wins.",
+        "Mercedes' engineering innovations.",
+        "Race day insights and tips."
+      ],
+      "George Russell": [
+        "George Russell's rookie highlights.",
+        "Mercedes team performance analysis.",
+        "Upcoming race: British Grand Prix - July 20, 2025"
+      ]
+    },
+    "McLaren": {
+      "Lando Norris": [
+        "Lando Norris fan club events.",
+        "McLaren's 2025 race strategy.",
+        "Driver interviews and behind-the-scenes."
+      ],
+      "Oscar Piastri": [
+        "Oscar's rising star moments.",
+        "McLaren car development updates.",
+        "Watch the latest McLaren race recap."
+      ]
+    }
+  };
+
+  function loadRecommendations() {
+    const selectedTeam = localStorage.getItem('selectedTeam');
+    const selectedDriver = localStorage.getItem('selectedDriver');
+    const container = document.getElementById('recommendation-content');
+
+    if (selectedTeam && selectedDriver) {
+      const recs = (recommendationsData[selectedTeam] && recommendationsData[selectedTeam][selectedDriver]) || [];
+      
+      if (recs.length > 0) {
+        container.innerHTML = '<ul style="padding-left: 18px;">' + recs.map(item => `<li style="margin-bottom: 10px;">${item}</li>`).join('') + '</ul>';
+      } else {
+        container.innerHTML = `<p>No recommendations found for ${selectedDriver} at ${selectedTeam}.</p>`;
+      }
+    } else {
+      container.innerHTML = `
+        <p>Select a team and driver on the selection page to see personalized recommendations here.</p>
+        <ul style="padding-left: 18px;">
+          <li style="margin-bottom: 10px;">Top Driver: Max Verstappen</li>
+          <li style="margin-bottom: 10px;">Upcoming Race: Monaco Grand Prix - May 26, 2025</li>
+          <li>Fan Favorite: Lando Norris</li>
+        </ul>
+      `;
+    }
+  }
+
+  // Load recommendations on page load
+  document.addEventListener('DOMContentLoaded', loadRecommendations);
+</script>
+
 
 
 <main>
@@ -70,6 +167,7 @@
 
   <section id="team-info" style="padding: 20px; max-width: 600px; margin: 0 auto; text-align: center;"></section>
 </main>
+
 
 
 

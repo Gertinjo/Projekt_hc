@@ -39,3 +39,44 @@ header {
   height: 100px;
   object-fit: contain;
 }
+.flex-wrapper {
+  display: flex;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  align-items: center; /* Vertical center */
+}
+
+.team-container {
+  flex: 3;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+.flex-wrapper {
+  display: flex;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  /* Remove align-items: center here */
+}
+
+#recommendations {
+  flex: 1;
+  min-width: 250px;
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  padding: 20px;
+  color: #ffd700;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 0 10px #ffd700;
+  
+  /* Make #recommendations flex container */
+  display: inline;
+  flex-direction: column;
+  justify-content: center; /* Vertically center content inside */
+}
+
+
