@@ -127,18 +127,30 @@
       <h2>Drivers</h2>
       <div class="drivers">
         <div class="driver-card" onclick="window.location.href='albon.html'">
-          <img src="images/albon.avif" alt="Esteban Ocon" />
-          <h3>Alexander Albon</h3>
+          <img src="images/gasly.avif" alt="Esteban Ocon" />
+          <h3>Pierre Gasly</h3>
           <p>Lead Driver</p>
         </div>
 
         <div class="driver-card" onclick="window.location.href='sainz.html'">
-          <img src="images/sainz.avif" alt="Fernando Alonso" />
-          <h3>Charlos Saiz</h3>
-          <p>Veteran Champion</p>
+          <img src="images/colapinto.avif" alt="Fernando Alonso" />
+          <h3>Franco Colapinto</h3>
+          <p>Rookie Driver</p>
         </div>
       </div>
-    </section>
+    </section>   
+    <h1>Ferrari F1 Team</h1>
+  <p id="recommendBox"></p>
+
+  <script>
+    const TEAM_NAME = "alpine";
+    const answers = JSON.parse(localStorage.getItem("userAnswers") || "[]");
+    const total = answers.length;
+    const matches = answers.filter(answer => answer === TEAM_NAME).length;
+    const percentage = total > 0 ? Math.round((matches / total) * 100) : 0;
+
+    document.getElementById("recommendBox").textContent = `You match Ferrari: ${percentage}%`;
+  </script>
 
     <section>
       <h2>Team Stats (2024 Season)</h2>

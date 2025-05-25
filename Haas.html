@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>McLaren F1 Team</title>
-      <link rel="icon" href="images/MC-removebg-preview.png" type="image/svg+xml" />
+  <title>Haas F1 Team - Team Info</title>
+  <link rel="icon" href="images/Logo_Haas_F1.png" type="image/svg+xml" />
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -15,13 +15,15 @@
     }
 
     header {
-      background: #ff6600; /* McLaren orange */
+      background: #e03c31; /* Haas red */
       padding: 20px;
       text-align: center;
     }
 
     header h1 {
       margin: 0;
+      font-weight: bold;
+      letter-spacing: 2px;
     }
 
     main {
@@ -35,7 +37,7 @@
     }
 
     h2 {
-      border-bottom: 2px solid #ff6600;
+      border-bottom: 2px solid #e03c31;
       padding-bottom: 10px;
       margin-bottom: 20px;
     }
@@ -73,7 +75,7 @@
       border-radius: 50%;
       object-fit: cover;
       margin-bottom: 10px;
-      border: 3px solid #ff6600;
+      border: 3px solid #e03c31;
     }
 
     .stats-table {
@@ -88,7 +90,7 @@
     }
 
     .stats-table th {
-      background: #222;
+      background: #333;
     }
 
     p.history {
@@ -96,7 +98,7 @@
     }
 
     a.back-link {
-      color: #ff6600;
+      color: #e03c31;
       text-decoration: none;
       font-weight: bold;
     }
@@ -108,42 +110,33 @@
 </head>
 <body>
   <header>
-    <h1>McLaren F1 Team</h1>
+    <h1>Haas F1 Team</h1>
   </header>
 
   <main>
-    <img
-      class="team-logo"
-      src="images/MC-removebg-preview.png"
-      alt="McLaren Logo"
-    />
+    <img class="team-logo" src="images/Logo_Haas_F1.png" alt="Haas F1 Team Logo" />
     <a class="back-link" href="index.html">&larr; Back to Main</a>
+
     <section>
       <h2>Team Overview</h2>
       <p class="history">
-        McLaren Racing is one of the most successful and historic teams in Formula 1, with multiple World Championships and a reputation for innovation and speed. The team has a bright future with a focus on developing young talent.
+        Haas F1 Team is an American-based Formula 1 constructor known for its rapid rise and competitive spirit. For the 2024/25 season, Haas continues to push forward with solid engineering and a talented driver lineup, aiming to improve their standings.
       </p>
     </section>
 
     <section>
       <h2>Drivers</h2>
       <div class="drivers">
-        <div class="driver-card" onclick="window.location.href='norris.html'">
-          <img
-            src="images/norris.avif"
-            alt="Lando Norris"
-          />
-          <h3>Lando Norris</h3>
-          <p>Fast and Fearless</p>
+        <div class="driver-card" onclick="window.location.href='ocon.html'">
+          <img src="images/ocon.avif" alt="Esteban Ocon" />
+          <h3>Esteban Ocon</h3>
+          <p>Lead Driver</p>
         </div>
 
-        <div class="driver-card" onclick="window.location.href='piastri.html'">
-          <img
-            src="images/piastri.avif"
-            alt="Oscar Piastri"
-          />
-          <h3>Oscar Piastri</h3>
-          <p>Rookie Sensation</p>
+        <div class="driver-card" onclick="window.location.href='bearman.html'">
+          <img src="images/bearman.avif" alt="Kevin Bearman" />
+          <h3>Kevin Bearman</h3>
+          <p>Rookie Driver</p>
         </div>
       </div>
     </section>
@@ -151,13 +144,13 @@
   <p id="recommendBox"></p>
 
   <script>
-    const TEAM_NAME = "mcLaren";
+    const TEAM_NAME = "haas";
     const answers = JSON.parse(localStorage.getItem("userAnswers") || "[]");
     const total = answers.length;
     const matches = answers.filter(answer => answer === TEAM_NAME).length;
     const percentage = total > 0 ? Math.round((matches / total) * 100) : 0;
 
-    document.getElementById("recommendBox").textContent = `You match McLaren: ${percentage}%`;
+    document.getElementById("recommendBox").textContent = `You match Ferrari: ${percentage}%`;
   </script>
     <section>
       <h2>Team Stats (2024 Season)</h2>
@@ -171,10 +164,10 @@
         </tr>
         <tr>
           <td>23</td>
-          <td>2</td>
-          <td>3</td>
-          <td>2</td>
-          <td>8</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
         </tr>
       </table>
     </section>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Advanced Beginner's Guide to F1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/33/F1.svg" type="image/svg+xml" />
+  <style>
+    /* Base & Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #121212;
+      color: #eee;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 1.5rem 1rem;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      background: #e10600; /* F1 red */
+      padding: 1.5rem 2rem;
+      width: 100%;
+      max-width: 900px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgb(225 6 0 / 0.5);
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    header h1 {
+      margin: 0;
+      font-weight: 700;
+      font-size: 2.2rem;
+      letter-spacing: 0.06em;
+      user-select: none;
+      color: #fff;
+      text-shadow: 0 0 6px #ff4136;
+    }
+
+    main {
+      width: 100%;
+      max-width: 900px;
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 6px 20px rgb(0 0 0 / 0.7);
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      border-bottom: 3px solid #e10600;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+      user-select: none;
+    }
+
+    /* Search input */
+    #searchTerm {
+      width: 100%;
+      padding: 0.6rem 1rem;
+      margin-bottom: 1.8rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      background: #2a2a2a;
+      color: #fff;
+      box-shadow: inset 0 2px 5px rgb(0 0 0 / 0.7);
+      transition: box-shadow 0.3s ease;
+    }
+
+    #searchTerm::placeholder {
+      color: #bbb;
+    }
+
+    #searchTerm:focus {
+      box-shadow: 0 0 6px 2px #e10600;
+    }
+
+    dl {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 1.8rem 2.5rem;
+    }
+
+    dt {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #00d8ff;
+      cursor: pointer;
+      position: relative;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px dashed #00d8ff;
+      user-select: none;
+    }
+
+    /* Tooltip container on dt */
+    dt:hover::after, dt:focus::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 130%;
+      width: 260px;
+      background: #222;
+      color: #eee;
+      font-weight: 400;
+      font-size: 0.95rem;
+      padding: 1rem 1.2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.7);
+      white-space: normal;
+      z-index: 10;
+      opacity: 0;
+      pointer-events: none;
+      animation: fadeInUp 0.3s forwards;
+      line-height: 1.4;
+    }
+
+    dt:hover::after {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Tooltip arrow */
+    dt:hover::before, dt:focus::before {
+      content: '';
+      position: absolute;
+      bottom: 115%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 8px;
+      border-style: solid;
+      border-color: #222 transparent transparent transparent;
+      opacity: 1;
+      animation: fadeInUp 0.3s forwards;
+      pointer-events: none;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(10px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    dd {
+      margin: 0;
+      font-size: 1rem;
+      color: #ccc;
+      padding-left: 0.5rem;
+      user-select: none;
+      line-height: 1.5;
+    }
+
+    .back-link {
+      margin-top: 2rem;
+      display: inline-block;
+      color: #00d8ff;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+
+    .back-link:hover, .back-link:focus {
+      border-color: #00d8ff;
+      outline: none;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 480px) {
+      dt::after {
+        width: 200px;
+        font-size: 0.9rem;
+      }
+
+      dl {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Beginner's Guide to Formula 1</h1>
+</header>
+
+<main>
+  <input type="search" id="searchTerm" placeholder="Search terms..." aria-label="Search F1 terms" />
+
+  <dl id="termsList">
+    <dt tabindex="0" data-tooltip="Drag Reduction System – opens a flap on the rear wing to reduce drag and increase speed in overtaking zones.">DRS</dt>
+    <dd>Drag Reduction System (DRS) helps cars go faster on straights by opening a rear wing flap.</dd>
+
+    <dt tabindex="0" data-tooltip="A strategy where a driver pits early to get fresh tires and overtake a rival when they pit later.">Undercut</dt>
+    <dd>Undercut is a tactical pit stop strategy to gain track position.</dd>
+
+    <dt tabindex="0" data-tooltip="Safety Car leads the race at reduced speed during dangerous incidents, bunching the field.">Safety Car</dt>
+    <dd>Used to neutralize the race and ensure safety after accidents or bad track conditions.</dd>
+
+    <dt tabindex="0" data-tooltip="Points awarded to the F1 team with the best combined results of their two drivers over the season.">Constructors' Championship</dt>
+    <dd>The title teams compete for based on combined driver points.</dd>
+
+    <dt tabindex="0" data-tooltip="When a driver overtakes another by driving on the inside of a corner.">Inside Line</dt>
+    <dd>The racing line on the inside of a turn, often used to overtake.</dd>
+
+    <dt tabindex="0" data-tooltip="When a driver pits during a safety car period to save time.">Safety Car Pit Stop</dt>
+    <dd>Strategic pit stop during safety car deployment for time advantage.</dd>
+
+    <dt tabindex="0" data-tooltip="The electronic system monitoring car components and telemetry during a race.">Telemetry</dt>
+    <dd>Data collected from the car used by teams to monitor performance and plan strategy.</dd>
+  </dl>
+
+  <a href="index.html" class="back-link">&larr; Back to Main</a>
+</main>
+
+<script>
+  // Search/filter functionality
+  const searchInput = document.getElementById('searchTerm');
+  const termsList = document.getElementById('termsList');
+  const terms = termsList.querySelectorAll('dt, dd');
+
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase();
+
+    // Loop terms pairs (dt & dd)
+    for (let i = 0; i < terms.length; i += 2) {
+      const dt = terms[i];
+      const dd = terms[i + 1];
+      const termText = dt.textContent.toLowerCase();
+      const descText = dd.textContent.toLowerCase();
+
+      if (termText.includes(query) || descText.includes(query)) {
+        dt.style.display = '';
+        dd.style.display = '';
+      } else {
+        dt.style.display = 'none';
+        dd.style.display = 'none';
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

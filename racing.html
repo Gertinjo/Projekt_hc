@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>McLaren F1 Team</title>
-      <link rel="icon" href="images/MC-removebg-preview.png" type="image/svg+xml" />
+  <link rel="icon" href="images/racing_bulls-logo.png" type="image/svg+xml" />
+  <title>Racing Bulls - Team Info</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -15,7 +16,7 @@
     }
 
     header {
-      background: #ff6600; /* McLaren orange */
+      background: #00205b; /* Dark blue, Racing Bulls primary */
       padding: 20px;
       text-align: center;
     }
@@ -35,7 +36,7 @@
     }
 
     h2 {
-      border-bottom: 2px solid #ff6600;
+      border-bottom: 2px solid #ff003c; /* Racing Bulls red highlight */
       padding-bottom: 10px;
       margin-bottom: 20px;
     }
@@ -73,7 +74,7 @@
       border-radius: 50%;
       object-fit: cover;
       margin-bottom: 10px;
-      border: 3px solid #ff6600;
+      border: 3px solid #ff003c;
     }
 
     .stats-table {
@@ -88,7 +89,7 @@
     }
 
     .stats-table th {
-      background: #222;
+      background: #333;
     }
 
     p.history {
@@ -96,7 +97,7 @@
     }
 
     a.back-link {
-      color: #ff6600;
+      color: #ff003c;
       text-decoration: none;
       font-weight: bold;
     }
@@ -108,57 +109,53 @@
 </head>
 <body>
   <header>
-    <h1>McLaren F1 Team</h1>
+    <h1>Racing Bulls</h1>
   </header>
 
   <main>
-    <img
-      class="team-logo"
-      src="images/MC-removebg-preview.png"
-      alt="McLaren Logo"
-    />
+    <img class="team-logo" src="images/racing_bulls-logo.png" alt="Racing Bulls Logo" />
     <a class="back-link" href="index.html">&larr; Back to Main</a>
+
     <section>
       <h2>Team Overview</h2>
       <p class="history">
-        McLaren Racing is one of the most successful and historic teams in Formula 1, with multiple World Championships and a reputation for innovation and speed. The team has a bright future with a focus on developing young talent.
+        Racing Bulls, formerly known as AlphaTauri and Toro Rosso, is Red Bull Racing’s sister team focused on developing young talent and competing at the sharp end of the midfield. With bold energy and a sleek new identity, Racing Bulls enters the 2024 season with high ambitions.
       </p>
     </section>
 
     <section>
       <h2>Drivers</h2>
       <div class="drivers">
-        <div class="driver-card" onclick="window.location.href='norris.html'">
-          <img
-            src="images/norris.avif"
-            alt="Lando Norris"
-          />
-          <h3>Lando Norris</h3>
-          <p>Fast and Fearless</p>
+        <div class="driver-card" onclick="window.location.href='lawson.html'">
+          <img src="images/lawson.avif" alt="Liam Lawson" />
+          <h3>Liam Lawson</h3>
+          <p>Lead Driver</p>
         </div>
 
-        <div class="driver-card" onclick="window.location.href='piastri.html'">
-          <img
-            src="images/piastri.avif"
-            alt="Oscar Piastri"
-          />
-          <h3>Oscar Piastri</h3>
-          <p>Rookie Sensation</p>
+        <div class="driver-card" onclick="window.location.href='hajdar.html'">
+          <img src="images/hadjar.avif" alt="Isack Hadjar" />
+          <h3>Isack Hadjar</h3>
+          <p>Rising Star</p>
         </div>
       </div>
     </section>
-   <h1>Ferrari F1 Team</h1>
+    <div class="score" id="recommendation">
+    Calculating your match with Aston Martin...
+  </div>
+
+    <h1>Ferrari F1 Team</h1>
   <p id="recommendBox"></p>
 
   <script>
-    const TEAM_NAME = "mcLaren";
+    const TEAM_NAME = "racing bulls";
     const answers = JSON.parse(localStorage.getItem("userAnswers") || "[]");
     const total = answers.length;
     const matches = answers.filter(answer => answer === TEAM_NAME).length;
     const percentage = total > 0 ? Math.round((matches / total) * 100) : 0;
 
-    document.getElementById("recommendBox").textContent = `You match McLaren: ${percentage}%`;
+    document.getElementById("recommendBox").textContent = `You match Ferrari: ${percentage}%`;
   </script>
+
     <section>
       <h2>Team Stats (2024 Season)</h2>
       <table class="stats-table">
@@ -171,10 +168,10 @@
         </tr>
         <tr>
           <td>23</td>
-          <td>2</td>
-          <td>3</td>
-          <td>2</td>
-          <td>8</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
         </tr>
       </table>
     </section>

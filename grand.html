@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Next Grand Prix Countdown</title>
+  <style>
+    body {
+      background: #121212;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    .countdown-box {
+      background: #1e1e1e;
+      border: 2px solid red;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 400px;
+      margin: auto;
+      font-size: 1.5rem;
+    }
+
+    .countdown-time {
+      font-size: 2rem;
+      color: #ff4444;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="countdown-box">
+    <h2>Next Grand Prix: Monaco GP</h2>
+    <p>Race starts in:</p>
+    <div class="countdown-time" id="countdown">Loading...</div>
+  </div>
+
+  <script>
+    const countdownEl = document.getElementById('countdown');
+    const nextRace = new Date("2025-05-25T14:15:00Z"); // Adjust to actual race date
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = nextRace - now;
+
+      if (diff <= 0) {
+        countdownEl.textContent = "The race is on!";
+        clearInterval(timer);
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      countdownEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    const timer = setInterval(updateCountdown, 1000);
+    updateCountdown(); // initial call
+  </script>
+
+  <a href="index.html" class="btn-go">Go to Main Page</a>
+  <style>
+  .btn-go {
+    display: inline-block;
+    background: #e10600;
+    padding: 10px 20px;
+    margin-top: 20px;
+    color: #fff;
+    padding: 0.7rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    margin-right: 100px;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgb(225 6 0 / 0.6);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  .btn-go:hover,
+  .btn-go:focus {
+    background: #ff2e2e;
+    box-shadow: 0 6px 18px rgb(255 46 46 / 0.8);
+    outline: none;
+  }
+  </style>
+
+</body>
+</html>

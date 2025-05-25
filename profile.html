@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/33/F1.svg" type="image/svg+xml" />
+  <title>F1 Profile</title>
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      color: #ff1c1c;
+    }
+
+    form {
+      background-color: #2a2a2a;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 10px;
+      transform: scale(1.2);
+    }
+
+    button {
+      background-color: #ff1c1c;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #e60000;
+    }
+  </style>
+</head>
+<body>
+  <h1>Your F1 Profile</h1>
+  <form id="quizForm">
+    <label><input type="checkbox" name="team" value="ferrari" /> Love Italian heritage and red livery</label>
+    <label><input type="checkbox" name="team" value="redbull" /> Prefer aggressive racing and energy drinks</label>
+    <label><input type="checkbox" name="team" value="mercedes" /> Trust in precision and consistency</label>
+    <label><input type="checkbox" name="team" value="mclaren" /> Support innovation and papaya colors</label>
+    <button type="submit">Continue</button>
+  </form>
+
+  <script>
+    document.getElementById("quizForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const answers = [];
+      document.querySelectorAll("input[name='team']:checked").forEach((input) => {
+        answers.push(input.value);
+      });
+      localStorage.setItem("userAnswers", JSON.stringify(answers));
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>

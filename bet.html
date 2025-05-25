@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/33/F1.svg" type="image/svg+xml" />
+
+<title>Monaco GP 2025 Betting</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #121212;
+    color: #eee;
+    margin: 0;
+    padding: 20px;
+  }
+  h1 {
+    text-align: center;
+    color: #d40000;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+  }
+  th, td {
+    border: 1px solid #444;
+    padding: 10px;
+    text-align: center;
+  }
+  th {
+    background: #d40000;
+    color: #fff;
+  }
+  input[type=number] {
+    width: 80px;
+    padding: 5px;
+    font-size: 1rem;
+  }
+  button {
+    background: #d40000;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  button:hover {
+    background: #a30000;
+  }
+  #bet-section, #confirmation, #payment {
+    max-width: 400px;
+    margin: 0 auto 20px;
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  #confirmation, #payment {
+    display: none;
+  }
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  select {
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+  #result {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+</style>
+</head>
+<body>
+
+<h1>Monaco Grand Prix 2025 Betting</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Team</th>
+      <th>% Chance to Win Monaco GP</th>
+      <th>% Chance to Win Title</th>
+      <th>Potential Payout for €1 Bet</th>
+    </tr>
+  </thead>
+  <tbody id="teams-table-body">
+    <!-- JS will fill this -->
+  </tbody>
+</table>
+
+<div id="bet-section">
+  <label for="bet-amount">Enter Bet Amount (€):</label>
+  <input type="number" id="bet-amount" min="1" step="0.01" value="1" />
+  <button id="start-bet">Place Bet</button>
+</div>
+
+<div id="confirmation">
+  <label for="team-select">Choose Team to Bet On:</label>
+  <select id="team-select">
+    <!-- JS will fill this -->
+  </select>
+  <button id="confirm-bet">Confirm Bet</button>
+</div>
+
+<div id="payment">
+  <p>Betting on <span id="selected-team"></span> with €<span id="selected-amount"></span></p>
+  <p>Potential Winnings: €<span id="potential-winnings"></span></p>
+  <button id="pay-now">Pay Now</button>
+</div>
+
+<div id="result"></div>
+
+<script>
+    
+  // Teams data: name, chance for Monaco GP, chance for title, payout multiplier (based on odds)
+  const teams = [
+    {name: "Red Bull Racing", monacoChance: 40, titleChance: 45, payout: 1.5},
+    {name: "Ferrari", monacoChance: 25, titleChance: 30, payout: 2.0},
+    {name: "Mercedes", monacoChance: 15, titleChance: 20, payout: 3.0},
+    {name: "Aston Martin", monacoChance: 10, titleChance: 8, payout: 5.0},
+    {name: "McLaren", monacoChance: 5, titleChance: 4, payout: 8.0},
+    {name: "Alpine", monacoChance: 3, titleChance: 2, payout: 10.0},
+    {name: "Williams", monacoChance: 1, titleChance: 1, payout: 20.0},
+    {name: "Haas", monacoChance: 0.5, titleChance: 0.2, payout: 50.0}
+  ];
+
+  const tableBody = document.getElementById("teams-table-body");
+  const teamSelect = document.getElementById("team-select");
+  const betAmountInput = document.getElementById("bet-amount");
+  const startBetBtn = document.getElementById("start-bet");
+  const confirmBetBtn = document.getElementById("confirm-bet");
+  const payNowBtn = document.getElementById("pay-now");
+  const confirmationDiv = document.getElementById("confirmation");
+  const paymentDiv = document.getElementById("payment");
+  const betSection = document.getElementById("bet-section");
+  const resultDiv = document.getElementById("result");
+  const selectedTeamSpan = document.getElementById("selected-team");
+  const selectedAmountSpan = document.getElementById("selected-amount");
+  const potentialWinningsSpan = document.getElementById("potential-winnings");
+
+  // Populate table & select options
+  function populateTeams() {
+    teams.forEach(team => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${team.name}</td>
+        <td>${team.monacoChance}%</td>
+        <td>${team.titleChance}%</td>
+        <td>€${team.payout.toFixed(2)}</td>
+      `;
+      tableBody.appendChild(tr);
+
+      const option = document.createElement("option");
+      option.value = team.name;
+      option.textContent = team.name;
+      teamSelect.appendChild(option);
+    });
+  }
+
+  populateTeams();
+
+  let betAmount = 1;
+  let selectedTeam = null;
+
+  startBetBtn.addEventListener("click", () => {
+    betAmount = parseFloat(betAmountInput.value);
+    if (isNaN(betAmount) || betAmount <= 0) {
+      alert("Please enter a valid bet amount (greater than 0).");
+      return;
+    }
+    betSection.style.display = "none";
+    confirmationDiv.style.display = "block";
+    resultDiv.textContent = "";
+  });
+
+  confirmBetBtn.addEventListener("click", () => {
+    selectedTeam = teamSelect.value;
+    if (!selectedTeam) {
+      alert("Please select a team.");
+      return;
+    }
+    confirmationDiv.style.display = "none";
+    paymentDiv.style.display = "block";
+    selectedTeamSpan.textContent = selectedTeam;
+    selectedAmountSpan.textContent = betAmount.toFixed(2);
+
+    // Calculate payout = betAmount * payout multiplier
+    const teamObj = teams.find(t => t.name === selectedTeam);
+    const payout = betAmount * teamObj.payout;
+    potentialWinningsSpan.textContent = payout.toFixed(2);
+  });
+
+  payNowBtn.addEventListener("click", () => {
+    // Simulate payment success
+    paymentDiv.style.display = "none";
+    resultDiv.textContent = `Bet placed successfully on ${selectedTeam} for €${betAmount.toFixed(2)}! Potential winnings: €${(betAmount * teams.find(t => t.name === selectedTeam).payout).toFixed(2)} 🏆`;
+    betSection.style.display = "block";
+    betAmountInput.value = "1";
+  });
+  // ... previous code unchanged ...
+
+  payNowBtn.addEventListener("click", () => {
+    // Pass bet info in URL params to payment.html
+    const params = new URLSearchParams();
+    params.set("team", selectedTeam);
+    params.set("amount", betAmount.toFixed(2));
+    params.set("payout", (betAmount * teams.find(t => t.name === selectedTeam).payout).toFixed(2));
+
+    window.location.href = "payment.html?" + params.toString();
+  });
+</script>
+
+</body>
+</html>

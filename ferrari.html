@@ -105,6 +105,7 @@
       text-decoration: underline;
     }
   </style>
+  </style>
 </head>
 <body>
   <header>
@@ -147,7 +148,25 @@
         </div>
       </div>
     </section>
+  <main>
+    <div class="content">
+      <h2>Team Overview</h2>
+      <p>Ferrari is the most historic team in F1...</p>
+    </div>
+  </main>
 
+  <h1>Ferrari F1 Team</h1>
+  <p id="recommendBox"></p>
+
+  <script>
+    const TEAM_NAME = "ferrari";
+    const answers = JSON.parse(localStorage.getItem("userAnswers") || "[]");
+    const total = answers.length;
+    const matches = answers.filter(answer => answer === TEAM_NAME).length;
+    const percentage = total > 0 ? Math.round((matches / total) * 100) : 0;
+
+    document.getElementById("recommendBox").textContent = `You match Ferrari: ${percentage}%`;
+  </script>
     <section>
       <h2>Team Stats (2024 Season)</h2>
       <table class="stats-table">
