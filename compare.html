@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Driver Comparison - F1 Stats</title>
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/33/F1.svg" type="image/svg+xml" />
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #ff1c1c;
+    }
+
+    select {
+      padding: 10px;
+      margin: 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+    }
+
+    .comparison {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .driver-card {
+      background-color: #2a2a2a;
+      padding: 20px;
+      border-radius: 12px;
+      width: 300px;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+    }
+
+    .driver-card h2 {
+      margin-bottom: 10px;
+      color: #ff4444;
+    }
+
+    .stat {
+      text-align: left;
+      margin: 8px 0;
+    }
+    .back-link {
+      margin-top: 2rem;
+      display: inline-block;
+      color: #d40000;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+
+    .back-link:hover, .back-link:focus {
+      border-color: #d40000;
+      outline: none;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Compare F1 Drivers</h1>
+
+  <div>
+    <select id="driver1">
+      <option value="">Select Driver 1</option>
+      <option value="sainz">Carlos Sainz</option>
+      <option value="verstappen">Max Verstappen</option>
+      <option value="leclerc">Charles Leclerc</option>
+      <option value="hamilton">Lewis Hamilton</option>
+      <option value="alonso">Fernando Alonso</option>
+    </select>
+
+    <select id="driver2">
+      <option value="">Select Driver 2</option>
+      <option value="sainz">Carlos Sainz</option>
+      <option value="verstappen">Max Verstappen</option>
+      <option value="leclerc">Charles Leclerc</option>
+      <option value="hamilton">Lewis Hamilton</option>
+      <option value="alonso">Fernando Alonso</option>
+    </select>
+  </div>
+
+  <div class="comparison">
+    <div class="driver-card" id="card1"></div>
+    <div class="driver-card" id="card2"></div>
+  </div>
+  <a href="index.html" class="back-link">&larr; Back to Main</a>
+
+  <script>
+    const driverStats = {
+      sainz: {
+        name: "Carlos Sainz",
+        wins: 2,
+        poles: 5,
+        fastestLaps: 3,
+        teams: "Toro Rosso, Renault, McLaren, Ferrari"
+      },
+      verstappen: {
+        name: "Max Verstappen",
+        wins: 59,
+        poles: 40,
+        fastestLaps: 28,
+        teams: "Toro Rosso, Red Bull"
+      },
+      leclerc: {
+        name: "Charles Leclerc",
+        wins: 5,
+        poles: 23,
+        fastestLaps: 9,
+        teams: "Sauber, Ferrari"
+      },
+      hamilton: {
+        name: "Lewis Hamilton",
+        wins: 103,
+        poles: 104,
+        fastestLaps: 65,
+        teams: "McLaren, Mercedes"
+      },
+      alonso: {
+        name: "Fernando Alonso",
+        wins: 32,
+        poles: 22,
+        fastestLaps: 23,
+        teams: "Minardi, Renault, Ferrari, McLaren, Aston Martin"
+      }
+    };
+
+    function renderCard(driverKey, cardId) {
+      const card = document.getElementById(cardId);
+      if (driverKey && driverStats[driverKey]) {
+        const stats = driverStats[driverKey];
+        card.innerHTML = `
+          <h2>${stats.name}</h2>
+          <div class="stat">🏁 Wins: ${stats.wins}</div>
+          <div class="stat">🎯 Poles: ${stats.poles}</div>
+          <div class="stat">⚡ Fastest Laps: ${stats.fastestLaps}</div>
+          <div class="stat">🚗 Teams: ${stats.teams}</div>
+        `;
+      } else {
+        card.innerHTML = "";
+      }
+    }
+
+    document.getElementById("driver1").addEventListener("change", function() {
+      renderCard(this.value, "card1");
+    });
+
+    document.getElementById("driver2").addEventListener("change", function() {
+      renderCard(this.value, "card2");
+    });
+  </script>
+</body>
+</html>

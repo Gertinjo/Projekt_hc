@@ -139,21 +139,17 @@
         </div>
       </div>
     </section>
-    <div class="score" id="recommendation">
-    Calculating your match with Aston Martin...
-  </div>
 
-    <h1>Ferrari F1 Team</h1>
   <p id="recommendBox"></p>
 
   <script>
-    const TEAM_NAME = "racing bulls";
+    const TEAM_NAME = "racingbulls";
     const answers = JSON.parse(localStorage.getItem("userAnswers") || "[]");
     const total = answers.length;
     const matches = answers.filter(answer => answer === TEAM_NAME).length;
     const percentage = total > 0 ? Math.round((matches / total) * 100) : 0;
 
-    document.getElementById("recommendBox").textContent = `You match Ferrari: ${percentage}%`;
+    document.getElementById("recommendBox").textContent = `You match Racing Bulls: ${percentage}%`;
   </script>
 
     <section>

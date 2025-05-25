@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>F1 Sounds</title>
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/33/F1.svg" />
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #ff1c1c;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      background-color: #ff1c1c;
+      border: none;
+      padding: 15px 30px;
+      margin: 10px;
+      color: white;
+      font-size: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #e60000;
+    }
+
+    .toggle {
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    input[type="checkbox"] {
+      transform: scale(1.5);
+      cursor: pointer;
+    }
+
+    footer {
+      margin-top: 40px;
+      color: gray;
+      font-size: 0.9rem;
+    }
+        .back-link {
+      margin-top: 2rem;
+      display: inline-block;
+      color: #d40000;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+
+    .back-link:hover, .back-link:focus {
+      border-color: #d40000;
+      outline: none;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>F1 Soundboard 🎧</h1>
+
+  <button class="btn" onclick="playSound('radio')">🔊 Pit Radio</button>
+  <button class="btn" onclick="playSound('engine')">🏁 Engine Rev</button>
+  <button class="btn" onclick="playSound('lights')">🚦 Lights Out</button>
+  <a href="index.html" class="back-link">&larr; Back to Main</a>
+
+  <div class="toggle">
+    <label for="soundToggle">Toggle Sound:</label>
+    <input type="checkbox" id="soundToggle" checked />
+  </div>
+
+  <footer>All sounds are for fun/demo purposes.</footer>
+
+  <!-- Sounds -->
+  <audio id="radio" src="images/Pit crew - Sound Effect ▌Improved With Audacity ▌.mp4"></audio>
+  <audio id="engine" src="images/V12, V10, V8, V6 sounds 🤯.mp4"></audio>
+  <audio id="lights" src="images/Formula 1 start lights.mp4"></audio>
+
+
+
+  <script>
+    function playSound(id) {
+      const toggle = document.getElementById("soundToggle").checked;
+      if (!toggle) return;
+      const audio = document.getElementById(id);
+      audio.currentTime = 0;
+      audio.play();
+    }
+  </script>
+</body>
+</html>

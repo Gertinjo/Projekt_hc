@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>F1 Tracks Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/33/F1.svg" type="image/svg+xml" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: #fff;
+    }
+    h1 {
+      text-align: center;
+      padding: 20px;
+      background-color: #ff1c1c;
+      margin: 0;
+    }
+    #map {
+      height: 90vh;
+      width: 100%;
+    }
+
+    .popup-content {
+      color: #000;
+    }
+
+    iframe {
+      width: 100%;
+      height: 200px;
+      border: none;
+      margin-top: 10px;
+    }
+    .back-link {
+      margin-top: 2rem;
+      display: inline-block;
+      color: #d40000;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+
+    .back-link:hover, .back-link:focus {
+      border-color: #d40000;
+      outline: none;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>F1 Tracks Around the World     <a href="index.html" class="back-link">&larr; Back to Main</a></h1>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([20, 0], 2);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const tracks = [
+      {
+        name: "Monaco Grand Prix",
+        coords: [43.7347, 7.4206],
+        fact: "One of the most iconic and tightest street circuits in F1.",
+        video: "https://www.youtube.com/watch?v=ajzQj7bjSWE"
+      },
+      {
+        name: "Silverstone Circuit",
+        coords: [52.0786, -1.0169],
+        fact: "Hosted the first ever F1 Grand Prix in 1950.",
+        video: "https://www.youtube.com/embed/W-KAC3BLzXw"
+      },
+      {
+        name: "Suzuka Circuit",
+        coords: [34.8431, 136.5419],
+        fact: "Famous for the 130R and figure-eight layout.",
+        video: "https://www.youtube.com/embed/ZgPeLHZcLgM"
+      },
+      {
+        name: "Monza Circuit",
+        coords: [45.6156, 9.2811],
+        fact: "Known as the Temple of Speed. Home of Ferrari fans.",
+        video: "https://www.youtube.com/embed/R5u8RzQW7gM"
+      },
+      {
+        name: "Circuit of the Americas",
+        coords: [30.1328, -97.6411],
+        fact: "First purpose-built F1 track in the USA.",
+        video: "https://www.youtube.com/embed/9pkb49Lb0Jg"
+      }
+    ];
+
+    tracks.forEach(track => {
+      L.marker(track.coords).addTo(map)
+        .bindPopup(`
+          <div class="popup-content">
+            <strong>${track.name}</strong><br>
+            ${track.fact}<br>
+            <iframe src="${track.video}" allowfullscreen></iframe>
+          </div>
+        `);
+    });
+  </script>
+</body>
+</html>

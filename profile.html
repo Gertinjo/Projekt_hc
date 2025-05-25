@@ -9,29 +9,49 @@
     body {
       background-color: #1a1a1a;
       color: white;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 40px 20px;
     }
 
-    h1 {
+    .profile-container {
+      background-color: #2a2a2a;
+      border-radius: 15px;
+      padding: 30px;
+      width: 100%;
+      max-width: 600px;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+      text-align: center;
+    }
+
+    .profile-header img {
+      width: 120px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      border: 3px solid #ff1c1c;
+    }
+
+    .profile-header h1 {
+      margin: 10px 0 5px;
       color: #ff1c1c;
     }
 
-    form {
-      background-color: #2a2a2a;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-      max-width: 400px;
-      width: 100%;
+    .profile-header p {
+      margin: 0;
+      color: #aaa;
+      font-size: 0.95rem;
     }
 
-    label {
+    .checkbox-group {
+      text-align: left;
+      margin: 30px 0;
+    }
+
+    .checkbox-group label {
       display: block;
-      margin-bottom: 15px;
+      margin: 10px 0;
       font-size: 1.1rem;
     }
 
@@ -44,11 +64,10 @@
       background-color: #ff1c1c;
       border: none;
       color: white;
-      padding: 10px 20px;
+      padding: 12px 25px;
       font-size: 1rem;
       border-radius: 8px;
       cursor: pointer;
-      margin-top: 20px;
     }
 
     button:hover {
@@ -57,15 +76,91 @@
   </style>
 </head>
 <body>
-  <h1>Your F1 Profile</h1>
-  <form id="quizForm">
-    <label><input type="checkbox" name="team" value="ferrari" /> Love Italian heritage and red livery</label>
-    <label><input type="checkbox" name="team" value="redbull" /> Prefer aggressive racing and energy drinks</label>
-    <label><input type="checkbox" name="team" value="mercedes" /> Trust in precision and consistency</label>
-    <label><input type="checkbox" name="team" value="mclaren" /> Support innovation and papaya colors</label>
-    <button type="submit">Continue</button>
-  </form>
+  <div class="profile-container">
+    <div class="profile-header">
+      <img src="images/profile.webp" alt="User Icon">
+      <h1>F1 Fan Profile</h1>
+      <p>Member since: <span id="joinDate"></span></p>
+      <p id="userNameDisplay">Welcome, </p>
+    </div>
 
+    <form id="quizForm">
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="team" value="ferrari" /> ❤️ Love Italian heritage and red livery</label>
+  <label><input type="checkbox" name="team" value="redbull" /> 🥤 Prefer aggressive racing and energy drinks</label>
+  <label><input type="checkbox" name="team" value="mercedes" /> 💡 Trust in precision, tech, and consistency</label>
+  <label><input type="checkbox" name="team" value="mclaren" /> 🍊 Support innovation and papaya colors</label>
+  <label><input type="checkbox" name="team" value="astonmartin" /> 💚 Like sleek green cars and underdog stories</label>
+  <label><input type="checkbox" name="team" value="haas" /> 🇺🇸 Cheer for American grit and surprises</label>
+  <label><input type="checkbox" name="team" value="williams" /> 📘 Admire racing legends and historic blue cars</label>
+  <label><input type="checkbox" name="team" value="racingbulls" /> 👕 Enjoy style, youth, and aggressive strategies</label>
+  <label><input type="checkbox" name="team" value="sauber" /> 💚 Like green innovation and comeback stories</label>
+  <label><input type="checkbox" name="team" value="alpine" /> 💙 Back French flair, bold moves, and risk-takers</label>
+      </div>
+       <button type="submit">View Badges</button>
+      <button type="submit">Continue</button>
+    </form>
+  </div>
+   <div class="badges" id="badgeContainer"></div>
+
+  <script>
+    const form = document.getElementById("quizForm");
+    const badgeContainer = document.getElementById("badgeContainer");
+
+    function unlockBadges(answers) {
+      const badges = [];
+
+      if (answers.includes("redbull")) {
+        badges.push("🏆 Red Bull Fan");
+      }
+      if (answers.includes("mercedes")) {
+        badges.push("💡 Tech Wizard");
+      }
+      if (answers.includes("ferrari")) {
+        badges.push("❤️ Tifosi Heart");
+      }
+      if (answers.includes("mclaren")) {
+        badges.push("🍊 Papaya Pride");
+      }
+
+      localStorage.setItem("userBadges", JSON.stringify(badges));
+      return badges;
+    }
+
+    function renderBadges(badges) {
+      badgeContainer.innerHTML = "<h2>Unlocked Badges:</h2>";
+      badges.forEach(badge => {
+        const span = document.createElement("span");
+        span.className = "badge";
+        span.textContent = badge;
+        badgeContainer.appendChild(span);
+      });
+    }
+
+    form.addEventListener("submit1", function(e) {
+      e.preventDefault();
+      const selected = Array.from(document.querySelectorAll("input[name='team']:checked")).map(cb => cb.value);
+      localStorage.setItem("userAnswers", JSON.stringify(selected));
+      const badges = unlockBadges(selected);
+      renderBadges(badges);
+    });
+
+    // Load badges on page load
+    const storedBadges = JSON.parse(localStorage.getItem("userBadges") || "[]");
+    if (storedBadges.length > 0) renderBadges(storedBadges);
+
+
+
+
+
+
+
+  </script>
+      <script>
+    // Show username
+    const userName = localStorage.getItem("f1UserName") || "Racer";
+    document.getElementById("userNameDisplay").textContent = `Welcome, ${userName}!`;
+  </script>
   <script>
     document.getElementById("quizForm").addEventListener("submit", function (e) {
       e.preventDefault();
@@ -76,6 +171,16 @@
       localStorage.setItem("userAnswers", JSON.stringify(answers));
       window.location.href = "index.html";
     });
+
+    // Generate random join date
+    function getRandomDate() {
+      const year = Math.floor(Math.random() * (2024 - 2018 + 1)) + 2018;
+      const month = Math.floor(Math.random() * 12) + 1;
+      const day = Math.floor(Math.random() * 28) + 1;
+      return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    }
+
+    document.getElementById("joinDate").textContent = getRandomDate();
   </script>
 </body>
 </html>

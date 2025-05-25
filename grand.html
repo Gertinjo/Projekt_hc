@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Next Grand Prix Countdown</title>
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/33/F1.svg" type="image/svg+xml" />
   <style>
     body {
       background: #121212;
@@ -33,14 +34,14 @@
 <body>
 
   <div class="countdown-box">
-    <h2>Next Grand Prix: Monaco GP</h2>
+    <h2>Next Grand Prix: Spain GP</h2>
     <p>Race starts in:</p>
     <div class="countdown-time" id="countdown">Loading...</div>
   </div>
 
   <script>
     const countdownEl = document.getElementById('countdown');
-    const nextRace = new Date("2025-05-25T14:15:00Z"); // Adjust to actual race date
+    const nextRace = new Date("2025-06-01T13:00:00Z"); // Adjust to actual race date
 
     function updateCountdown() {
       const now = new Date();

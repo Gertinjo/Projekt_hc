@@ -100,6 +100,7 @@
   <input type="number" id="bet-amount" min="1" step="0.01" value="1" />
   <button id="start-bet">Place Bet</button>
 </div>
+<a href="index.html" class="btn-go">Go to Main Page</a>
 
 <div id="confirmation">
   <label for="team-select">Choose Team to Bet On:</label>
@@ -118,8 +119,6 @@
 <div id="result"></div>
 
 <script>
-    
-  // Teams data: name, chance for Monaco GP, chance for title, payout multiplier (based on odds)
   const teams = [
     {name: "Red Bull Racing", monacoChance: 40, titleChance: 45, payout: 1.5},
     {name: "Ferrari", monacoChance: 25, titleChance: 30, payout: 2.0},
@@ -216,6 +215,30 @@
     window.location.href = "payment.html?" + params.toString();
   });
 </script>
+<style>
+  .btn-go {
+    display: inline-block;
+    background: #e10600;
+    color: #fff;
+    padding: 0.7rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    margin-right: 100px;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgb(225 6 0 / 0.6);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  .btn-go:hover,
+  .btn-go:focus {
+    background: #ff2e2e;
+    box-shadow: 0 6px 18px rgb(255 46 46 / 0.8);
+    outline: none;
+  }
+</style>
 
 </body>
 </html>
